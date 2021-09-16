@@ -11,24 +11,45 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="jumbotron text-center">
-      <h1>Mission to Mars</h1>
+  <div style="padding:10px">
+    <div class="jumbotron text-center" style="background-color:lightgrey; padding:20px; margin:0px">
+      <h1 style="font-size:70px;">Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
-    {{mars.news_title}}
+    <br>
+    <br>
+    <h1>Latest Mars News</h1>
+    <strong>{{mars.news_title}}</strong>
     <br>
     {{mars.news_paragraph}}
     <br>
-    <img src='{{mars.featured_image}}'>
     <br>
-    {{mars.facts|safe}}
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Featured Mars Image</h1>
+        <img src='{{mars.featured_image}}'>
+      </div>
+      <div class="col-md-4">
+        <h4>Mars Facts</h4>
+        <table>{{mars.facts|safe}}</table>
+      </div>
+    </div>
     <br>
-    {{mars.hemispheres}}
+    <h1 class='text-center'>Mars Hemispheres</h1>
+    <hr>
+    <div class='row'>
+      {% for hemisphere in mars.hemispheres %}
+      <div class='col-md-3'>
+        <h4>{{hemisphere.title}}</h4>
+        <img src='{{hemisphere.img_url}}' width='100%'>
+      </div>
+      {% endfor %}
+    </div>
     <br>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"></script>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
